@@ -18,7 +18,7 @@ from wordcloud import STOPWORDS, WordCloud
 
 read_dotenv(".env")
 
-DEFAULT_DATA_SOURCE = "data/val_10k.csv"
+DEFAULT_DATA_SOURCE = "data/val_1k.csv"
 TEMP_DIR = os.getenv("TEMP_DIR")
 HTML_P_TAG_START = "<p style='text-align: center;'>"
 HTML_P_TAG_END = "</p>"
