@@ -12,14 +12,12 @@ from PIL import Image
 import os
 
 from streamlit import sidebar as side
-from matplotlib import pyplot
-from py_dotenv import read_dotenv
 from wordcloud import STOPWORDS, WordCloud
 
-read_dotenv(".env")
+from config import Config
 
 DEFAULT_DATA_SOURCE = "data/val_1k.csv"
-TEMP_DIR = os.getenv("TEMP_DIR")
+TEMP_DIR = Config.TMP_DIR
 HTML_P_TAG_START = "<p style='text-align: center;'>"
 HTML_P_TAG_END = "</p>"
 HTML_BREAK = "<br>"
@@ -46,8 +44,10 @@ def about_me():
     side.subheader("Akash Dave")
     side.markdown("Hi! I am in superlove with data and I do magic using Python. Relax Guys! I am not saying Java is bad.")
 
-    side.markdown('<a href="https://github.com/akashdve"><i class="fa fa-github" style="font-size:48px;"></i></a>',
-                   unsafe_allow_html=True)
+
+    side.markdown('<a href="https://github.com/akashdve"><i class="fa fa-github" style="font-size:36px;"></i></a>'
+                  '<a href="https://linkedin.com/in/akashdave98"><i class="fa fa-linkedin" style="font-size:36px; padding-left:16px;"></i></a>',
+                  unsafe_allow_html=True)
 
 
 def get_temp_path(filename: str) -> str:
@@ -119,14 +119,15 @@ def main():
     ###########################################################
     st.set_page_config(page_title="Handy Data Explorer App")
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    st.title("Handy Data Explorer App")
+    st.title("Handy Data Explorer App ({})".format(Config.VERSION))
     st.markdown("Wanna know what your data mean?")
     side.markdown("<button type='button' class='btn btn-primary'>Note:</button> More features coming soon",
                   unsafe_allow_html=True)
     side.markdown("This webapp is developed under DOHackathon.")
     side.markdown("Why so simple?")
-    side.markdown("This is the very first version. I came to know about this hackathon just one day before the deadline. Having very little time to think, pick and implement"
-                  " an idea, I hacked myself to the fullest and explored my new limits.")
+    side.markdown("Well, I am not a front-end guy. I always tend to search for a simpler and quicker solution to build UI."
+                  " I came across this wonderful framework <a href='http://streamlit.io'>Streamlit</a> and thought of trying it out.",
+                  unsafe_allow_html=True)
     side.header("About Me")
     about_me()
     ###########################################################
